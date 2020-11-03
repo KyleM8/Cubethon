@@ -26,10 +26,12 @@ public class InputManager : MonoBehaviour
 
     private void OnEnable() {
         playerControls.Enable();
+        Debug.Log("player controls enabled");
     }
 
     private void OnDisable() {
         playerControls.Disable();
+        Debug.Log("player controls disabled");
     }
 
     public Vector2 GetPlayerMovement() {
