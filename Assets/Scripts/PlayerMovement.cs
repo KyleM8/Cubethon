@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    private InputManager inputManager;
     [SerializeField] private Rigidbody playerRigidbody;
-    private int playerSpeed = 2000;
+    [SerializeField] private float forwardForce = 2000f;
+    [SerializeField] private float playerForce = 1500f;
 
-    void Start()
+    private void Awake()
     {
-        
+        inputManager = InputManager.Instance;
     }
 
     void FixedUpdate()
@@ -18,8 +20,15 @@ public class PlayerMovement : MonoBehaviour
     }
 
     private void Movement() {
-        playerRigidbody.AddForce(0, 0, playerSpeed * Time.deltaTime);
+        playerRigidbody.AddForce(0, 0, forwardForce * Time.deltaTime);
+        Vector2 playerInput = inputManager.GetPlayerMovement();
+        Debug.Log("input: " + playerInput.x);
+        if (playerInput.x == -1) {
+            playerRigidbody.AddForce(-playerForce, 0, 0 * Time.deltaTime);
+        }
+        else if (playerInput.x == 1) {
+            playerRigidbody.AddForce(playerForce, 0, 0 * Time.deltaTime);
+        }
     }
-
 
 }
