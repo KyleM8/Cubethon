@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class InputManager : MonoBehaviour
 {
-    private PlayerControls playerControls;
+    public PlayerControls playerControls;
 
     private static InputManager _instance;
     public static InputManager Instance {

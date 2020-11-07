@@ -6,16 +6,14 @@ public class PlayerMovement : MonoBehaviour
 {
     private InputManager inputManager;
     [SerializeField] private Rigidbody playerRigidbody;
-    [SerializeField] private float forwardForce = 2000f;
-    [SerializeField] private float playerForce = 1500f;
+    [SerializeField] private float forwardForce = 5f;
+    [SerializeField] private float playerForce = 3f;
 
-    private void Awake()
-    {
+    private void Awake() {
         inputManager = InputManager.Instance;
     }
 
-    void FixedUpdate()
-    {
+    void FixedUpdate() {
         Movement();
     }
 
@@ -24,10 +22,10 @@ public class PlayerMovement : MonoBehaviour
         Vector2 playerInput = inputManager.GetPlayerMovement();
         Debug.Log("input: " + playerInput.x);
         if (playerInput.x == -1) {
-            playerRigidbody.AddForce(-playerForce, 0, 0 * Time.deltaTime);
+            playerRigidbody.AddForce(-playerForce * Time.deltaTime, 0, 0);
         }
         else if (playerInput.x == 1) {
-            playerRigidbody.AddForce(playerForce, 0, 0 * Time.deltaTime);
+            playerRigidbody.AddForce(playerForce * Time.deltaTime, 0, 0);
         }
     }
 
