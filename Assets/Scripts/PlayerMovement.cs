@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Rigidbody playerRigidbody;
     [SerializeField] private float forwardForce = 5f;
     [SerializeField] private float playerForce = 3f;
+    
 
     private void Awake() {
         inputManager = InputManager.Instance;
@@ -20,7 +21,7 @@ public class PlayerMovement : MonoBehaviour
     private void Movement() {
         playerRigidbody.AddForce(0, 0, forwardForce * Time.deltaTime);
         Vector2 playerInput = inputManager.GetPlayerMovement();
-        Debug.Log("input: " + playerInput.x);
+        // Debug.Log("input: " + playerInput.x);
         if (playerInput.x == -1) {
             playerRigidbody.AddForce(-playerForce * Time.deltaTime, 0, 0);
         }
